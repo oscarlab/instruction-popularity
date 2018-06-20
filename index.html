@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<title>Instruction usage among Ubuntu binaries (C/C++)</title>
+		<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/dc/2.0.0-beta.32/dc.css" crossorigin="anonymous">
+		<link rel="stylesheet" type="text/css" href="https://bootswatch.com/3/lumen/bootstrap.css" crossorigin="anonymous">
+		<link rel="stylesheet" type="text/css" href="main.css" crossorigin="anonymous">
+	</head>
+	<body>
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-xs-12 dc-data-count dc-chart" id="data-count">
+					<h2>
+					Occurrence of instructions among C/C++ binaries in Ubuntu 16.10
+					<br>
+					<small>
+					<span class="filter-count"></span> of <span class="total-count"></span> items selected.
+					<a id="reset-all" href="#">Reset All</a>
+					<br>
+					<a href="old/index.html">Click here</a> to access the treemap viz.
+					</small>
+					</h2>
+				</div>
+			</div>
+		</div>
+		<div class="fluid-row">
+			<div class="col-xs-4 row-chart">
+				<h4>Types of Instructions <small><a id="reset-type">reset</a></small></h4>
+				<div class="dc-chart" id="type-chart"></div>
+			</div>
+			<div class="col-xs-8">
+				<div class="row">
+					<div class="col-md-6 col-md-offset-3 input-group">
+						<input type="text" id="search-input" class="form-control input-lg" placeholder="Use this to filter specific Opcodes or Mnemonics">
+					</div>
+				</div>
+				<div class="fluid-row">
+					<h4>
+					Package Installation Probability vs. Instruction count
+					<small><a id="reset-pinst">reset</a></small>
+					</h4>
+					<div class="col-xs-8 col-xs-offset-2 dc-chart" id="pinst-chart"></div>
+				</div>
+				<div class="fluid-row">
+					<div class="col-xs-6 pie-chart">
+						<h4>Top 10 Mnemonics <small><a id="reset-mnem">reset</a> <br> <a id="gen-mnem-list">Generate List of Unique Mnems</a> </small></h4>
+						<div class="dc-chart" id="mnem-chart"></div>
+					</div>
+					<div class="col-xs-6 pie-chart">
+						<h4>Top 10 Opcodes <small><a id="reset-opcode">reset</a> <br> <a id="gen-opcode-list">Generate List of Unique Opcodes</a></small></h4>
+						<div class="dc-chart" id="opcode-chart"></div>
+					</div>
+				</div>
+				<div class="fluid-row">
+					<div class="col-xs-6 pie-chart">
+						<h4>Top 10 Prefixes <small><a id="reset-prefix">reset</a> <br> <a id="gen-prefix-list">Generate List of Unique Prefixes</a></small></h4>
+						<div class="dc-chart" id="prefix-chart"></div>
+					</div>
+					<div class="col-xs-6 pie-chart">
+						<h4>Instruction Size (bytes) <small><a id="reset-size">reset</a><br> <a id="gen-size-list">Generate List of Sizes</a></small></h4>
+						<div class="dc-chart" id="size-chart"></div>
+					</div>
+				</div>
+				<div class="fluid-row">
+					<div class="col-xs-12">
+						<h4>
+						The table is sorted by the number of packages the instruction occurred in by default.
+						<br>
+						Click on the header for any numeric value to sort by that column.
+						<br>
+						Click on the links to look at the list of packages that use each instruction, and the sources of each instruction.
+						</h4>
+						<table class="table table-bordered table-striped" id="data-table">
+							<thead>
+								<tr class="header">
+									<th>Instr Type</th>
+									<th>Mnemonic</th>
+									<th>Prefix</th>
+									<th>Opcode</th>
+									<th class="data-table-col" data-col="size">Instr Size <span class="glyph-span"></span></th>
+									<th>Group</th>
+									<th class="data-table-col" data-col="count">Occurence Count <span class="glyph-span"></span></th>
+									<th class="data-table-col" data-col="package_count">No. of Packages occurred in <span class="glyph-span"></span></th>
+									<th>Packages</th>
+									<th class="data-table-col" data-col="source_count">No. of Sources <span class="glyph-span"></span></th>
+									<th>Sources</th>
+								</tr>
+							</thead>
+						</table>
+						<div id="paging">
+							Showing <span id="begin"></span>-<span id="end"></span> of <span id="size"></span>.
+							<input id="last" class="btn" type="Button" value="Last" onclick="javascript:last()" />
+							<input id="next" class="btn" type="button" value="Next" onclick="javascript:next()"/>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.17/d3.js"></script>
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/crossfilter/1.3.12/crossfilter.js"></script>
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/dc/2.0.0-beta.32/dc.js"></script>
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore.js"></script>
+	<script type="text/javascript" src="chart.js"></script>
+</body>
+<footer></footer>
+</html>
